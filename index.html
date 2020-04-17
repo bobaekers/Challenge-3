@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>MUSK'S LANDING</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/index.css" rel="stylesheet" type="text/css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+        <script>
+
+            var apiKey = '&appid=643c7d4ab3c12e3f0a1761744d024193';
+            var url = 'http://api.openweathermap.org/data/2.5/weather?q='
+            var stad = '';
+            var celcius = "&units=metric";
+
+            function setup(){
+                var zoek = document.getElementById('zoeken');
+                console.log(zoek);
+                zoek.addEventListener('click', function(){
+                    stad = document.getElementById("zoekstad").value;
+                    console.log(stad);
+                    loadJSON(url + stad + apiKey + celcius, weer);
+                })
+                
+                
+               
+
+            }
+
+            function weer(weer){
+                console.log(weer);
+
+                document.getElementById('tijnisheelknap').innerHTML= weer.main.temp;
+                
+                console.log(weer.wind.speed);
+                
+                
+                
+
+            }
+
+
+
+            
+
+        </script>
+    </head>
+    <body>
+        
+        <div class="grid-item1">
+            <h1>
+                THE LANDING
+            </h1>
+        </div>
+        <div class="grid-item2">
+            <h2>
+                choose a city
+            </h2>
+            <input id="zoekstad" type="text" placeholder="stad...">
+            <button id="zoeken">Search</button>
+        </div>
+        <div class="grid-item3">
+            <h2>
+                weercondities
+            </h2>
+            <h3>temparartuur</h3>
+            <h3 id="tijnisheelknap"></h3>
+
+        </div>
+        <div class="grid-item4">
+            <h2>
+                hoogte
+            </h2>
+        </div>
+        <div class="grid-item5">
+            <h2>
+                bevolkingsdichtheid
+            </h2>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+</html>
