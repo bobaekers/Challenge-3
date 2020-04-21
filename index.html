@@ -20,7 +20,7 @@
                 zoek.addEventListener('click', function(){ //button onclick vertalen naar javascript vorm
                     stad = document.getElementById("zoekstad").value; 
                     console.log(stad);
-                    var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + stad + apiKey + celcius;
+                    var url = 'https://api.openweathermap.org/data/2.5/weather?q=' + stad + apiKey + celcius;
                     loadJSON(url, weer); //Zorg ervoor dat wanneer de user op een stad zoekt, de bijbehorende weersinformatie verschijnt
 
             
