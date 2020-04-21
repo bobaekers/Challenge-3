@@ -5,43 +5,62 @@
         <title>MUSK'S LANDING</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/index.css" rel="stylesheet" type="text/css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+        <!-- Zorg ervoor dat er een LoadJSON functie kan worden aangevraagd -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script> 
         <script>
 
-            var apiKey = '&appid=643c7d4ab3c12e3f0a1761744d024193';
-            var url = 'http://api.openweathermap.org/data/2.5/weather?q='
-            var stad = '';
-            var celcius = "&units=metric";
+            var apiKey = '&appid=643c7d4ab3c12e3f0a1761744d024193';  //Maak API var aan
+            var stad = ''; //Waarde var is waarde invoer van invoerveld
+            var celcius = "&units=metric"; //Zorg ervoor dat standaardwaarde Kelvin verandert in graden celsius 
 
-            function setup(){
-                var zoek = document.getElementById('zoeken');
-                console.log(zoek);
-                zoek.addEventListener('click', function(){
-                    stad = document.getElementById("zoekstad").value;
+
+            function setup(){ 
+                var zoek = document.getElementById('zoeken'); //introduceer button in function
+                console.log(zoek); //test in de console of function werkt
+                zoek.addEventListener('click', function(){ //button onclick vertalen naar javascript vorm
+                    stad = document.getElementById("zoekstad").value; 
                     console.log(stad);
-                    loadJSON(url + stad + apiKey + celcius, weer);
-                })
-                
-                
-               
-
-            }
-
-            function weer(weer){
-                console.log(weer);
-
-                document.getElementById('tijnisheelknap').innerHTML= weer.main.temp;
-                
-                console.log(weer.wind.speed);
-                
-                
-                
-
-            }
-
-
+                    var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + stad + apiKey + celcius;
+                    loadJSON(url, weer); //Zorg ervoor dat wanneer de user op een stad zoekt, de bijbehorende weersinformatie verschijnt
 
             
+                })
+
+            }
+
+        
+            function weer(weer){
+            console.log(weer);
+                //Maak variabelen aan van de waarden van de API keys van temperatuur, windsnelheid en de plaatscoordinaten
+                var temp = weer.main.temp;
+                var wind = weer.wind.speed;
+                var lon = weer.coord.lon;
+                var lat = weer.coord.lat;
+                document.getElementById('temperatuur').innerHTML = temp + "℃";
+                document.getElementById('windsnelheid').innerHTML = wind + "m/s";
+
+            
+
+
+                var location = lat + ","+ lon; //Om de hoogte te bepalen, zijn de lon en lat waarden nodig om de locatie te bepalen
+                var elevKey = '&access-token='+'Q1Kz5jsW5jy9zCZRWZpkauu8MsNYvoJIWDy6s4faonUBGSBFelvZb2HBbX3jMB8Q'; 
+                //Deze key is nodig om de API van elevation aan te vragen  
+
+            
+
+                var elevUrl = 'https://api.jawg.io/elevations?locations=' + location + elevKey; //Vraag de url aan om de hoogte te krijgen
+                loadJSON(elevUrl, elevation); //De functie die ervoor zorgt dat ik API's kan aanvragen
+
+            
+
+            }
+            //Maak functie aan waarmee de hoogte uit de API wordt gehaald en weergegeven
+            function elevation(elev){
+            console.log(elev);
+            var hoogte = parseFloat((elev[0].elevation).toFixed(2)); //Maak variabele aan met daarin de hoogte afgerond op 2 decimalen
+            document.getElementById('hoogte').innerHTML = hoogte + "m"; //Zorg ervoor dat de opgehaalde waarde wordt weergegeven
+            console.log(hoogte);
+            }  
 
         </script>
     </head>
@@ -56,53 +75,29 @@
             <h2>
                 choose a city
             </h2>
-            <input id="zoekstad" type="text" placeholder="stad...">
-            <button id="zoeken">Search</button>
+            <input id="zoekstad" type="text" placeholder="e.g. Amsterdam">
+            <button id="zoeken">SEARCH</button>
         </div>
         <div class="grid-item3">
             <h2>
                 weercondities
             </h2>
-            <h3>temparartuur</h3>
-            <h3 id="tijnisheelknap"></h3>
+            <h2>temperatuur</h2>
+            <h2 id="temperatuur"></h2>
 
         </div>
         <div class="grid-item4">
             <h2>
                 hoogte
             </h2>
+            <h2 id="windsnelheid"></h2>
         </div>
         <div class="grid-item5">
             <h2>
                 bevolkingsdichtheid
             </h2>
+            <h2 id="hoogte"></h2>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </body>
 </html>

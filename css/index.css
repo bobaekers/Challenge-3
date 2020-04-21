@@ -9,11 +9,10 @@
         margin: 0;
     }
     
-    
     body{
         min-height: 100%;
         background-color: black;
-    
+        color: chartreuse;
     }
     
     .grid-item1{
@@ -22,63 +21,67 @@
       align-items: center;
     
       margin: 10%;
-    
     }
 
     h1{
       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
       color: chartreuse;
-  
     }
 
-    h2, h3{
-      color: white;
+    h2{
+      color: chartreuse;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      margin: 60px;
+      text-align: center;
+    }
+
+    .grid-item2{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #zoeken{
+      margin-top: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: chartreuse;
+      border: none;
+      color: black;
+      padding: 13px;
+      text-align: center;
+      font-style: oblique;
+
     }
     
     @media only screen and (max-width: 350px) {
-      p{
-          font-size: 2.5em; /*De tekst in de paragraphs moet per device meeschalen qua grootte*/
+      h1, h2{
+        color: #FCF340;
+      }
+
+      #zoeken{
+        background-color: #FCF340;
       }
     }
     
     @media only screen and (min-width: 768px) and (max-width: 1365px) {
-      p{
-    
-          font-size: 4.5em;
+      h1, h2{
+        color: #FB33DB;
       }
-    
-      .clock {
-          font-size: 5em; /*De size van de clock moet per device meeschalen qua grootte*/
-    
-      }
-    
-      .bliksemStart, .bliksemMid , .bliksemEind{
-        border-width: 3px;
+
+      #zoeken{
+        background-color: #FB33DB;
       }
     }
     
     @media only screen and (min-width: 1366px) and (max-width: 2800px) {
-      body{
-    
-        background-size: cover;
-        background-position: bottom; 
-    
+      h1, h2{
+        color: #01FFFF;
+      }
+
+      #zoeken{
+        background-color: #01FFFF;
+      }
     }
     
-      p{
-    
-          font-size: 5em;
-      }
-    
-      .clock {
-          font-size: 7em;
-    
-      }
-      .bliksemStart, .bliksemMid , .bliksemEind{
-        border-width: 4px;
-      }
-    
-    
-    
-    }
-    
+     
+     
